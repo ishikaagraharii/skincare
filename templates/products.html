@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>All Products</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='product.css') }}" />
+</head>
+<body>
+  {%include 'nav.html' %}
+  <div class="content-box">
+    <!-- <div class="page-wrapper"> -->
+      <!-- Header -->
+    
+      <div class="page-banner">
+        <video id="background-video" autoplay muted loop>
+          <source src="static/video/serumvideo.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <div class="text-container">
+          <p1>VÉRAÉ Skincare</p1>
+          <p>Experience a luxurious skincare solution meticulously designed to nourish, protect, and enhance the natural beauty of every skin.</p>
+        </div>
+      </div>
+    {%include 'filter.html' %}
+  <!-- <div class="page-wrapper"> -->
+    <!-- Header -->
+    <!-- <header class="page-header">
+      <div class="header-content">
+        <h1>Natural Beauty Skincare</h1>
+        <p>Experience a luxurious skincare solution meticulously designed to nourish, protect, and enhance the natural beauty of every skin.</p>
+      </div>
+    </header> -->
+
+    <div class="content-wrapper">
+     
+
+      <!-- Products Grid -->
+      <main class="products">
+        {% for product in products %}
+        <div class="product-card">
+          <div class="img-wrap">
+            <img src="{{ product.image_url }}" alt="{{ product.name }}" />
+
+          </div>
+          <div class="product-info">
+            <h3>{{ product.name }}</h3>
+            <!-- <p class="desc">{{ product.description }}</p> -->
+            <div class="bottom-row">
+              <span class="price">${{ product.price }}</span>
+              <button class="btn-view">View</button>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </main>
+    </div>
+  </div>
+  </div>
+
+  <div/>
+    {%include 'footer.html' %}
+  </div>
+
+  <div/>
+    <div class ="brand">
+        <h1 class="brand">VÉRAÉ</h1>
+      <div/>
+  </div>
+
+      
+</body>
+</html>
