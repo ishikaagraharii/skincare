@@ -2,6 +2,7 @@ run = "python3 app.py"
 modules = ["python-3.11"]
 [nix]
 channel = "stable-24_05"
+packages = ["glibcLocales"]
 
 [deployment]
 run = ["sh", "-c", "python3 app.py"]
@@ -9,3 +10,7 @@ run = ["sh", "-c", "python3 app.py"]
 [[ports]]
 localPort = 3000
 externalPort = 80
+
+[[ports]]
+localPort = 5000
+externalPort = 5000

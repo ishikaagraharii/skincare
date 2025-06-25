@@ -15,6 +15,9 @@
   <div class="content-box">
    
       {% include 'nav.html' %}
+   
+   
+
 
     <div class="headline">In every sun, in every rain,<br> your elegance remains.</div>
     <div class="subtext">Set your place to explore VÉRAÉ</div>
@@ -31,7 +34,7 @@
         </div>
         <div class="item">
             <img src="static/images/pexels-cottonbro-4612160.jpg" alt="iSHE picks">
-            <p>iSHE picks</p>
+            <p>VÉRAÉ picks</p>
         </div>
     </div>
 
@@ -60,7 +63,7 @@
         </div>
       </div>
       <div class="image-block">
-        <img src="static/images/pexels-shvetsa-3852204.jpg" alt="Radiant Skin" />
+        <img src="static/images/pexels-darksight-image-736222078-32634174.jpg" alt="Radiant Skin" />
          <p class="since-text">SINCE 2025</p>
       </div>
     </div>
@@ -68,7 +71,7 @@
 
     <div class="best-product">
       <div class="video-container">
-        <video controls>
+        <video  autoplay muted playsinline>
           <source src="static/video/mixkit-a-young-woman-applies-skincare-moisturizing-cream-on-her-face-50426-hd-ready.mp4" type="video/webm" />
           Your browser does not support the video tag.
         </video>
@@ -124,16 +127,16 @@
       <!-- right: the FAQ questions -->
       <div class="faq-questions">
         <div class="faq">
-          <h2 role="button">What is Charme?</h2>
-          <p class="details">Charme is a luxury skincare brand dedicated to helping you achieve healthy, radiant skin.</p>
+          <h2 role="button">What is VÉRAÉ?</h2>
+          <p class="details">VÉRAÉ is a luxury skincare brand dedicated to helping you achieve healthy, radiant skin.</p>
         </div>
         <div class="faq">
-          <h2 role="button">What makes Charme unique?</h2>
-          <p class="details">Details about what makes Charme unique...</p>
+          <h2 role="button">What makes VÉRAÉ unique?</h2>
+          <p class="details">Details about what makes VÉRAÉ unique...</p>
         </div>
         <div class="faq">
-          <h2 role="button">Where are Charme products made?</h2>
-          <p class="details">Details about where Charme products are made...</p>
+          <h2 role="button">Where are VÉRAÉ products made?</h2>
+          <p class="details">Details about where VÉRAÉ products are made...</p>
         </div>
         <div class="faq">
           <h2 role="button">How do I track my order?</h2>
@@ -168,6 +171,60 @@
             const details = item.nextElementSibling;
             details.style.display = details.style.display === 'block' ? 'none' : 'block';
         });
+    });
+
+    function toggleDropdown() {
+      const dd = document.getElementById('dropdown');
+      dd.style.display = dd.style.display === 'block' ? 'none' : 'block';
+    }
+    // Select existing 
+    function toggleDropdown() {
+      const dd = document.getElementById('dropdown');
+      dd.style.display = dd.style.display === 'block' ? 'none' : 'block';
+    }
+    // Select existing location
+    // When a user picks a saved location, we POST to '/set_location'.
+    // This Flask endpoint saves the selected zipcode/city (plus lat/lon) into session,
+    // allowing the '/browse' page to read it and recommend products.
+    document.querySelectorAll('#saved-list li').forEach(li => {
+      li.addEventListener('click', () => {
+        const loc = {
+          id: li.dataset.id,
+          zip: li.dataset.zip,
+          description: li.dataset.desc,
+          latitude: li.dataset.lat,
+          longitude: li.dataset.lon
+        };
+        fetch('/save_location', {
+          method: 'POST', headers: {'Content-Type':'application/json'},
+          body: JSON.stringify(loc)
+        }).then(() => location.reload());
+      });
+    });
+    // Add new location
+    document.getElementById('add-form').addEventListener('submit', async e => {
+      e.preventDefault();
+      const zipcode = document.getElementById('zipcode').value;
+      const city = document.getElementById('city').value;
+      const res = await fetch('/add_location', {
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({zipcode, city})
+      });
+      if (res.ok) location.reload();
+      else alert('Error adding location');
+    });
+    // Close on outside click
+    window.addEventListener('click', e => {
+      const dd = document.getElementById('dropdown');
+      if (!dd.contains(e.target) && !e.target.classList.contains('dropdown-btn')) {
+        dd.style.display = 'none';
+      }
+    });
+    window.addEventListener('click', e => {
+      const dd = document.getElementById('dropdown');
+      if (!dd.contains(e.target) && !e.target.classList.contains('dropdown-btn')) {
+        dd.style.display = 'none';
+      }
     });
   </script>
 </body>
