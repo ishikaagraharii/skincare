@@ -3,73 +3,132 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>About Us - BeautyCo</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='about.css') }}" />
+  <title>About Us - VÉRAÉ</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='about.css') }}" />
 </head>
 <body>
   <header class="site-header">
-   
-    <div class="video-cont">
-      <div class="navcontainer">
-        <div class="site-nav">
-          <h1 class="logo">VÉRAÉ</h1>
-          <ul>
-            <li><a href="#">Shop VÉRAÉ</a></li>
-            <li><a href="#">Contact Us</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
-          </ul>
-        </div>
+    <div class="navcontainer">
+      <div class="site-nav">
+        <h1 class="logo">VÉRAÉ</h1>
+        <ul>
+          <li><a href="/">Shop VÉRAÉ</a></li>
+          <li><a href="/contact">Contact Us</a></li>
+          <!-- <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li> -->
+        </ul>
       </div>
-      <video id="video" autoplay muted loop>
-        <source src="static/video/aboutvideo.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-      
-      <div class="text-cont">
-        <p1>About 
-          VÉRAÉ</p1>
-      </div>
-    </div>
-    <div class="overlay">
-      <p>We believe that beauty thrives in diversity and discovery.
-      Our purpose is to champion a world of inspiration and inclusion where everyone can celebrate their beauty.</p>
     </div>
   </header>
 
-  <section class="hero">
-    <div class="container hero-content">
-      <p2>HERITAGE</p2>
-      <p>From the very beginning, our founder believed that Sephora could not only disrupt beauty retail, but that it would have a positive impact on the world.</p>
+  <section class="hero-section">
+    <div class="container">
+      <div class="hero-content">
+        <h1>About VÉRAÉ</h1>
+        <div class="overlay">
+          <p>VÉRAÉ is a next-generation skincare brand designed for the modern world. We understand that your skin doesn't live in a bubble — it's constantly exposed to environmental factors like pollution, humidity, temperature, and more. That's why we go beyond generic skincare. At VÉRAÉ, we combine clean ingredients with intelligent technology to recommend products tailored to your local environment. Whether you're dealing with urban pollution, dry air, or seasonal shifts, our smart system helps you discover what your skin truly needs. No location data? No problem. Our formulas are effective even without customization, offering simple yet powerful solutions for healthy, glowing skin.</p>
+        </div>
+      </div>
     </div>
-   
   </section>
 
-  <div class="aboutimg">
-    <img class="imgabt" src="static/images/Screenshot from 2025-06-06 23-56-05.png">
-    </div>  
+  <div class="gridabout">
+    <div class="item">
+      <img src="static/images/pexels-anntarazevich-7772146.jpg" alt="VÉRAÉ Products">
+    </div>
+    <div class="item">
+      <img src="static/images/pexels-anntarazevich-7771993.jpg" alt="Natural Ingredients">
+    </div>
+    <div class="item">
+      <img src="static/images/pexels-anntarazevich-7772120.jpg" alt="Skincare Routine">
+    </div>
+  </div>
+
+  <section class="heritage-section">
+    <div class="container">
+      <div class="heritage-content fade-in">
+        <h2>HERITAGE</h2>
+        <p>Rooted in the rich traditions of Indian skincare, VÉRAÉ blends time-tested natural wisdom with modern science. Inspired by nature, powered by technology — we honour the past while creating the future of skincare.</p>
+      </div>
+    </div>
+  </section>
 
   <div class="abt-section">
-    <h3>Our Story</h3>
-    <p>Founded in 2005, BeautyCo has revolutionized the beauty industry with a focus on innovation, quality, and inclusivity. Our products are designed to cater to all skin tones and types because beauty is universal.</p>
+    <div class="container">
+      <h3>Our Story</h3>
+      <p>At VÉRAÉ, our journey began with a simple belief — skincare should adapt to you, not the other way around. Living in cities with rising pollution and unpredictable weather, we realized that traditional skincare doesn't consider the real world your skin faces daily. That's why we created VÉRAÉ: a blend of clean ingredients and intelligent technology that understands your environment and recommends what your skin actually needs. From a small idea to a growing skincare movement, we're here to make personalized, effective skincare simple — wherever you are.</p>
+    </div>
   </div>
 
+  <section class="locations-section">
+    <div class="container">
+      <h2>Our Store Locations</h2>
+      <div class="locations-grid">
+        <div class="location-card fade-in">
+          <h4>Mumbai</h4>
+          <p>Experience VÉRAÉ in the heart of India's financial capital. Our flagship store offers personalized consultations and the complete product range.</p>
+        </div>
+        <div class="location-card fade-in">
+          <h4>Delhi</h4>
+          <p>Visit our Delhi location for expert skincare advice tailored to the city's unique environmental challenges.</p>
+        </div>
+        <div class="location-card fade-in">
+          <h4>Bangalore</h4>
+          <p>Discover intelligent skincare solutions in India's tech hub, where innovation meets beauty.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <div>
-    <h2>Our Store Locations</h2>
-    <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1L_4bM3sNLo5sX19X4gAH-ArZllDizhI&ehbc=2E312F&noprof=1" width="640" height="480"></iframe>
-  </div>
-
+  <section class="cta-section">
+    <div class="container">
+      <h2>Ready to Transform Your Skin?</h2>
+      <p>Discover skincare that adapts to your environment</p>
+      <a href="/" class="cta-button">SHOP VÉRAÉ</a>
+    </div>
+  </section>
 
   <footer class="site-footer">
     <div class="container">
-      <p>© 2024 BeautyCo. All rights reserved.</p>
+      <p>© 2025 VÉRAÉ. All rights reserved.</p>
       <div class="footer-links">
         <a href="#">Privacy Policy</a>
         <a href="#">Terms of Use</a>
       </div>
     </div>
   </footer>
+
+  <script>
+    // Scroll animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-in').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Header background on scroll
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('.site-header');
+      if (window.scrollY > 100) {
+        header.style.background = 'rgba(255, 255, 255, 0.98)';
+        header.style.borderBottom = '1px solid #e0e0e0';
+      } else {
+        header.style.background = 'rgba(255, 255, 255, 0.95)';
+        header.style.borderBottom = '1px solid #f0f0f0';
+      }
+    });
+  </script>
 </body>
 </html>

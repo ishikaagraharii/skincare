@@ -129,11 +129,25 @@ nav {
 .item p {
   margin-top: 10px;
 }
+.hovers{
+  text-decoration: none;
+  color: #050505;
+  font-size: 1.0rem;
+  margin: 0;
+   /* Change to solid line */
+  padding-bottom: 2px; /* Add some space between text and border */
+  font-family: 'Poppins';
+  
+}
+
+.about-section{
+  background:#e1dbdb;
+}
 
 #about {
      font-size: 0.5em; /* Adjusts the font size */
      color: black;
-     margin-top:150px;
+     margin-top:100px;
      margin-left:60px;
      /* margin-left:60px; */
      font-family:'Poppins';/* You can change this to whatever color you prefer */
@@ -165,7 +179,7 @@ nav {
 .text-block {
   flex: 1;
   padding-right: 40px;
-  margin-top: 280px;
+  margin-top: 80px;
   margin-left:60px;
    /* margin-left:60px; */
 }
@@ -197,7 +211,7 @@ nav {
 .text-row p {
   font-size: 1rem;
   color: #666;
-  //margin-top: 220px;
+  /* //margin-top: 220px; */
 }
 
 .image-block {

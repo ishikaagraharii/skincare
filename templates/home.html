@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Skincare Layout</title>
+  <title>VÉRAÉ</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,24 +26,28 @@
     <div class="grid">
         <div class="item">
             <img src="static/images/pexels-alesiakozik-7795398.jpg" alt="Image 1">
-            <p>All products</p>
+            <a href="/all-products" class="hovers">All Products</a>
+
+
         </div>
         <div class="item">
             <img src="static/images/pexels-polina-tankilevitch-5468755.jpg" alt="Browse by Location">
-            <p>Browse by Location</p>
+            <a href="/browse" class="hovers">Browse by Region</a>
+
         </div>
         <div class="item">
             <img src="static/images/pexels-cottonbro-4612160.jpg" alt="iSHE picks">
-            <p>VÉRAÉ picks</p>
+            <a href="#" class="hovers">VÉRAÉ picks</a>
+
         </div>
     </div>
 
 
-    
+  <div class="about-section">  
      <p id="about" style="font-size: smaller;">ABOUT</p>
      <div class="about">
          <p>
-             <span style="color: black;">VÉRAÉ is a skincare brand that is dedicated to providing high-quality, effective, and cruelty-free skincare products for all skin types.</span>
+             <span style="color: black;">VÉRAÉ is a smart skincare brand that recommends products based on your location and environmental factors like pollution and humidity. Whether personalized or general, our clean, effective formulas are designed to match your skin’s real needs — naturally and intelligently.</span>
              <span style="color: grey;"> Our mission is to help you achieve healthy, radiant skin that reflects your unique beauty.</span>
          </p>
      </div>
@@ -63,11 +67,11 @@
         </div>
       </div>
       <div class="image-block">
-        <img src="static/images/pexels-darksight-image-736222078-32634174.jpg" alt="Radiant Skin" />
+        <img src="static/images/pexels-karolina-grabowska-8363609.jpg" alt="Radiant Skin" />
          <p class="since-text">SINCE 2025</p>
       </div>
     </div>
-
+  </div>
 
     <div class="best-product">
       <div class="video-container">
@@ -132,15 +136,18 @@
         </div>
         <div class="faq">
           <h2 role="button">What makes VÉRAÉ unique?</h2>
-          <p class="details">Details about what makes VÉRAÉ unique...</p>
+          <p class="details">Smart skincare that adapts to your environment.
+          VÉRAÉ uses pollution, weather, and location data to recommend clean, effective products — personalized or universal, always skin-first.
+
+</p>
         </div>
         <div class="faq">
           <h2 role="button">Where are VÉRAÉ products made?</h2>
-          <p class="details">Details about where VÉRAÉ products are made...</p>
+          <p class="details">All VÉRAÉ products are thoughtfully formulated and made in India, combining nature-inspired ingredients with cutting-edge technology to deliver high-quality, environment-aware skincare.</p>
         </div>
         <div class="faq">
           <h2 role="button">How do I track my order?</h2>
-          <p class="details">Details on how to track your order...</p>
+          <p class="details">Once your order is shipped, you’ll receive a tracking link via email or SMS.</p>
         </div>
       </div>
     </div>
@@ -155,77 +162,16 @@
     {%include 'footer.html' %}
   </div>
 
-  <div/>
+  </div>
     <div class ="brand">
         <h1 class="brand">VÉRAÉ</h1>
-      <div/>
+      </div>
   </div>
     <div>
      <!-- {%include 'nav.html' %}} -->
     </div>
-     
+     <script src="{{ url_for('static', filename='scripts/script.js') }}"></script>
 
-  <script>
-    document.querySelectorAll('.faq h2').forEach(item => {
-        item.addEventListener('click', () => {
-            const details = item.nextElementSibling;
-            details.style.display = details.style.display === 'block' ? 'none' : 'block';
-        });
-    });
-
-    function toggleDropdown() {
-      const dd = document.getElementById('dropdown');
-      dd.style.display = dd.style.display === 'block' ? 'none' : 'block';
-    }
-    // Select existing 
-    function toggleDropdown() {
-      const dd = document.getElementById('dropdown');
-      dd.style.display = dd.style.display === 'block' ? 'none' : 'block';
-    }
-    // Select existing location
-    // When a user picks a saved location, we POST to '/set_location'.
-    // This Flask endpoint saves the selected zipcode/city (plus lat/lon) into session,
-    // allowing the '/browse' page to read it and recommend products.
-    document.querySelectorAll('#saved-list li').forEach(li => {
-      li.addEventListener('click', () => {
-        const loc = {
-          id: li.dataset.id,
-          zip: li.dataset.zip,
-          description: li.dataset.desc,
-          latitude: li.dataset.lat,
-          longitude: li.dataset.lon
-        };
-        fetch('/save_location', {
-          method: 'POST', headers: {'Content-Type':'application/json'},
-          body: JSON.stringify(loc)
-        }).then(() => location.reload());
-      });
-    });
-    // Add new location
-    document.getElementById('add-form').addEventListener('submit', async e => {
-      e.preventDefault();
-      const zipcode = document.getElementById('zipcode').value;
-      const city = document.getElementById('city').value;
-      const res = await fetch('/add_location', {
-        method:'POST', headers:{'Content-Type':'application/json'},
-        body: JSON.stringify({zipcode, city})
-      });
-      if (res.ok) location.reload();
-      else alert('Error adding location');
-    });
-    // Close on outside click
-    window.addEventListener('click', e => {
-      const dd = document.getElementById('dropdown');
-      if (!dd.contains(e.target) && !e.target.classList.contains('dropdown-btn')) {
-        dd.style.display = 'none';
-      }
-    });
-    window.addEventListener('click', e => {
-      const dd = document.getElementById('dropdown');
-      if (!dd.contains(e.target) && !e.target.classList.contains('dropdown-btn')) {
-        dd.style.display = 'none';
-      }
-    });
-  </script>
+   
 </body>
 </html>

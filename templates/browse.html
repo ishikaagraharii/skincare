@@ -1,136 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Location</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='browse.css') }}" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-  <style>
-    #map {
-      height: 400px;
-      width: 100%;
-      border-radius: 10px;
-      margin: 1rem 0;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Region</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" />
+     <link rel="stylesheet" href="{{ url_for('static', filename='browse.css') }}" />
 </head>
 <body>
-  {% include 'nav.html' %}
-
-  <div class="content-box">
-    <div class="page-banner">
-      <div class="text-container">
-        <div class="locate">
-          <!-- <h3>City Weather</h3> -->
-
-          <!-- 🗺️ Map Container -->
-          <div id="map"></div>
-           
-          <!-- 🔍 Input Form -->
-          
-          <form id="searchForm">
-            <input
-              type="text"
-              id="cityInput"
-              placeholder="Enter city"
-              required
-              autocomplete="off"
-              class="search-input"
-            />
-            <button type="submit" class="search-icon" aria-label="Search city">
-              🔍
-            </button>
-          </form>
-
-        
-
-          <div id="status-message"></div>
-          <div class="content-wrapper">
-            <div id="product-container" class="products"></div>
-          </div>
+    {%include 'nav.html' %}
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-leaf"></i> VÉRAÉ</h1>
+            <p>AI-Powered Skincare Recommendations Based on Your Environment</p>
         </div>
-      </div>
+
+        <div class="search-section">
+            <form id="cityForm" class="search-form">
+                <input 
+                    type="text" 
+                    id="cityInput" 
+                    class="search-input"
+                    placeholder="Enter your city name (e.g., Mumbai, Delhi, Bangalore)" 
+                    required
+                >
+                <button type="submit" id="searchBtn" class="search-btn">
+                    <i class="fas fa-search"></i> Search
+                </button>
+            </form>
+
+            <div id="loadingDiv" class="loading" style="display: none;">
+                <i class="fas fa-spinner"></i>
+                Analyzing your environment and finding perfect skincare products...
+            </div>
+        </div>
+
+        <div class="map-section" id="mapSection">
+            <h3><i class="fas fa-map-marker-alt"></i> Your Location</h3>
+            <div id="map"></div>
+        </div>
+
+        <div id="resultsDiv"></div>
     </div>
-  </div>
+    <div>
+        {%include 'footer.html' %}
+      </div>
 
-  {% include 'footer.html' %}
+      <div>
+        <div class ="brand">
+            <h1 class="brand">VÉRAÉ</h1>
+          </div>
+      </div>
 
-  <!-- Leaflet JS -->
-  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-
-  <script>
-    // Initialize empty map (centered globally)
-    const map = L.map('map').setView([20.5937, 78.9629], 4); // Default view: India center
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '© OpenStreetMap contributors'
-    }).addTo(map);
-
-    let cityMarker;
-
-    const form = document.getElementById('searchForm');
-    const cityInput = document.getElementById('cityInput');
-    const statusMsg = document.getElementById('status-message');
-    const container = document.getElementById('product-container');
-
-    form.addEventListener('submit', async e => {
-      e.preventDefault();
-      const city = cityInput.value.trim();
-      if (!city) return;
-
-      statusMsg.textContent = 'Loading products...';
-      container.innerHTML = '';
-
-      try {
-        const res = await fetch('/get_products_by_city', {
-          method: 'POST',
-          headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({ city })
-        });
-
-        const data = await res.json();
-        if (!res.ok) {
-          statusMsg.textContent = data.error;
-          return;
-        }
-
-        const { latitude, longitude } = data;
-
-        // 🗺️ Update map with city location
-        map.setView([latitude, longitude], 11);
-        if (cityMarker) {
-          map.removeLayer(cityMarker);
-        }
-        cityMarker = L.marker([latitude, longitude]).addTo(map).bindPopup(city).openPopup();
-
-        // 🧊 Weather info
-        statusMsg.textContent = `Showing products for ${data.city} (Temp: ${data.current_temp}°C, Season: ${data.season})`;
-
-        if (data.products.length === 0) {
-          container.innerHTML = '<p>No products found for this season.</p>';
-          return;
-        }
-
-        // 🧴 Show products
-        data.products.forEach(p => {
-          const card = document.createElement('div');
-          card.className = 'product-card';
-          card.innerHTML = `
-            <div class="img-wrap">
-              <img src="${p.image_url}" alt="${p.name}">
-            </div>
-            <div class="bottom-row">
-              <h3>${p.name}</h3>
-              <button class="btn-view">View</button>
-            </div>
-          `;
-          container.appendChild(card);
-        });
-
-      } catch (err) {
-        statusMsg.textContent = 'Error fetching products. Please try again.';
-      }
-    });
-  </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+     <script src="{{ url_for('static', filename='scripts/browse.js') }}"></script>
 </body>
 </html>
