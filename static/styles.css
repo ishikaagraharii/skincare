@@ -470,6 +470,164 @@ video {
   display: block;
 }
 
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  .content-box {
+    padding: 0 15px;
+  }
+
+  .headline {
+    font-size: 2.5rem;
+    margin: 1.5rem 0;
+    padding: 0 10px;
+  }
+
+  .subtext {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .item img {
+    height: 250px;
+  }
+
+  .transformation-section {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    text-align: center;
+  }
+
+  .text-row h2 {
+    font-size: 2.5rem;
+  }
+
+  .big-bold {
+    font-size: 3rem;
+  }
+
+  .small-light {
+    font-size: 1.5rem;
+  }
+
+  .image-block img {
+    height: 300px;
+  }
+
+  .best-product {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .video-container video {
+    height: 250px;
+  }
+
+  .text-right {
+    text-align: center;
+  }
+
+  .text-right h2 {
+    font-size: 2rem;
+  }
+
+  .heading h2 {
+    font-size: 1.8rem;
+    padding: 0 10px;
+  }
+
+  .product-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .faq-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .textleft p {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .textright p {
+    font-size: 1.2rem;
+  }
+
+  .faq-row {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .faq-image img {
+    height: 300px;
+  }
+
+  .brand {
+    right: 15px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .headline {
+    font-size: 2rem;
+  }
+
+  .subtext {
+    font-size: 0.9rem;
+  }
+
+  .item img {
+    height: 200px;
+  }
+
+  .text-row h2 {
+    font-size: 2rem;
+  }
+
+  .big-bold {
+    font-size: 2.5rem;
+  }
+
+  .small-light {
+    font-size: 1.2rem;
+  }
+
+  .text-right h2 {
+    font-size: 1.8rem;
+  }
+
+  .heading h2 {
+    font-size: 1.5rem;
+  }
+
+  .textleft p {
+    font-size: 1.5rem;
+  }
+
+  .textright p {
+    font-size: 1rem;
+  }
+
+  .faq h2 {
+    font-size: 1.1rem;
+  }
+
+  .brand {
+    font-size: 0.9rem;
+    right: 10px;
+  }
+}
+
+/* Animation Classes */
 
 
 .footer {

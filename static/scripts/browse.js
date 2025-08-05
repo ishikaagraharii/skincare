@@ -246,13 +246,13 @@
                       <img src="${product.image_url || 'https://via.placeholder.com/300x250?text=VÉRAÉ+Product'}" 
                            alt="${product.name}" class="product-image" 
                            onerror="this.src='https://via.placeholder.com/300x250?text=VÉRAÉ+Product'">
+                             <div class="product-category">${product.category || 'Skincare'}</div>
                       <div class="product-info">
                           <h3 class="product-name">${product.name}</h3>
-                          <div class="product-category">${product.category || 'Skincare'}</div>
-                          <p class="product-description">${product.description || 'Premium skincare product for your daily routine.'}</p>
-                          <div class="product-price">₹${product.price || '999'}</div>
+                          
+                         
                           <button class="buy-btn recommended-btn" onclick="buyProduct('${product.name}')">
-                              <i class="fas fa-shopping-cart"></i> Add to Cart
+                              <i class="fas fa-shopping-cart"></i> View
                           </button>
                       </div>
                   </div>
@@ -265,29 +265,35 @@
 
       // Other Products Section
       if (otherProducts.length > 0) {
-          html += '<h2 class="section-title other-products">Other Skincare Products</h2>';
-          html += '<div class="products-grid">';
+          html += `<h2 class="section-title other-products">Other Skincare Products</h2>`;
+          html += `<main class="products products-grid">`;
 
           otherProducts.forEach(product => {
               html += `
-                  <div class="product-card">
-                      <img src="${product.image_url || 'https://via.placeholder.com/300x250?text=VÉRAÉ+Product'}" 
-                           alt="${product.name}" class="product-image" 
-                           onerror="this.src='https://via.placeholder.com/300x250?text=VÉRAÉ+Product'">
-                      <div class="product-info">
-                          <h3 class="product-name">${product.name}</h3>
-                          <div class="product-category">${product.category || 'Skincare'}</div>
-                          <p class="product-description">${product.description || 'Premium skincare product for your daily routine.'}</p>
-                          <div class="product-price">₹${product.price || '999'}</div>
-                          <button class="buy-btn" onclick="buyProduct('${product.name}')">
-                              <i class="fas fa-shopping-cart"></i> Add to Cart
-                          </button>
-                      </div>
+              <div class="product-card${product.recommended ? ' recommended' : ''}">
+                ${product.recommended ? `<div class="recommended-badge">Recommended</div>` : ''}
+                <div class="img-wrap">
+                  <img src="${product.image_url || 'https://via.placeholder.com/300x250?text=VÉRAÉ+Product'}"
+                       alt="${product.name}"
+                       onerror="this.src='https://via.placeholder.com/300x250?text=VÉRAÉ+Product'">
+                </div>
+                <div class="product-info">
+                 <div class="product-category">${product.category || 'Skincare'}</div>
+                  <h3 class="product-name">${product.name}</h3>
+
+                 
+                    <button class="buy-btn${product.recommended ? ' recommended-btn' : ''}"
+                            onclick="buyProduct('${product.name}')">
+                      <i class="fas fa-shopping-cart"></i>
+                      ${product.recommended ? 'View' : 'View'}
+                    </button>
                   </div>
+                </div>
+              </div>
               `;
           });
 
-          html += '</div>';
+          html += `</main>`;
       }
 
       // No products fallback
